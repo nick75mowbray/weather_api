@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<nav id="search-container">
+    
+    <div id="search-content" class="closed">
+        <h4 id="close">&#215;</h4>
+        <input type="text" name="city" placeholder="search for a city">
+        <!-- buttons go here -->
+        <div id="btn-container">
+            <button class="city-btn">Adelaide</button>
+        </div>
+    </div>
+</nav>
+<!-- todays city and temp -->
+<div class="flex-container">
+    <h4 id="arrow">></h4>
+    <div id="today-container">
+        <h3 id="city-name">ADELAIDE</h3>
+        <div id="current-temp-container">
+            <h1 id="today-temp">18</h1>
+            <h1>&#176;</h1>
+        </div>
+        <h3 id="today-weather">sunny</h3>
+    </div>
+</div>
+<!-- today other info -->
+<div id="info-container">
+    <div class="info">
+        <h2 id="humidity">80%</h2>
+        <h5>Humidity</h5>
+    </div>
+    <div class="info">
+        <h2 id="windspeed">9 m/s</h2>
+        <h5>Wind</h5>
+    </div>
+    <div class="info">
+        <h2 id="uv">low</h2>
+        <h5>UV</h5>
+    </div>
+</div>
+<!-- forcast cards -->
+<div id="forcast-container">
+    <div class="card">
+        <h4 id="day-1" class="day">MON</h4>
+        <h2 id="temp-1" class="forcast-temp">13&#176;</h2>
+        <h4 id="condition-1" class="forcast-condition">sunny</h4>
+    </div>
+    <div class="card">
+        <h4 id="day-2" class="day">MON</h4>
+        <h2 id="temp-2" class="forcast-temp">13&#176;</h2>
+        <h4 id="condition-2" class="forcast-condition">sunny</h4>
+    </div>
+    <div class="card">
+        <h4 id="day-3" class="day">MON</h4>
+        <h2 id="temp-3" class="forcast-temp">13&#176;</h2>
+        <h4 id="condition-3" class="forcast-condition">sunny</h4>
+    </div>
+    <div class="card">
+        <h4 id="day-4" class="day">MON</h4>
+        <h2 id="temp-4" class="forcast-temp">13&#176;</h2>
+        <h4 id="condition-4" class="forcast-condition">sunny</h4>
+    </div>
+    <div class="card">
+        <h4 id="day-5" class="day">MON</h4>
+        <h2 id="temp-5" class="forcast-temp">13&#176;</h2>
+        <h4 id="condition-5" class="forcast-condition">sunny</h4>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="javascript.js"></script>
+</body>
+</html>

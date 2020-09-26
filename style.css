@@ -5,10 +5,15 @@
     font-weight: 400;
 }
 body {
+    width: 100vw;
+    height: 100vh;
     font-family: 'Roboto', sans-serif;
     background-color: cornflowerblue;
     color: white;
-    background-image: url("/images/desktop.png");
+    background-image: url("./images/desktop.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Rubik', sans-serif;
@@ -172,6 +177,6 @@ input {
 }
 @media only screen and (max-width:800px){
     body {
-        background-image: url("/images/mobile.png");
+        background-image: url("./images/mobile.png");
     }
 }

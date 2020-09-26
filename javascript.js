@@ -89,8 +89,11 @@ init();
 
 function renderButtons(){
     for (var i=0; i < cities.length; i++){
+        var buttonDiv = $("<div class='btn-container'></div>");
+        var deletebtn = $("<button class='delete'></button>").text("X");
         var cityBTN = $("<button class='city-btn'></button>").text(cities[i]);
-        $('#btn-container').append(cityBTN);
+        buttonDiv.append(cityBTN, deletebtn);
+        $('#btn-container').append(buttonDiv);
         console.log("buttons rendering");
     }
 };
@@ -119,6 +122,14 @@ $('#search-form').on("submit", function(event){
     renderButtons();
     toggleSearch();
     runAPI($('#city-search').val());
+});
+
+// buttons
+$('.city-btn').on("click", function(){
+    var thisCity = $( this ).text();
+    console.log(thisCity);
+    toggleSearch();
+    runAPI(thisCity);
 });
 
 

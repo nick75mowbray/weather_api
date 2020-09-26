@@ -52,18 +52,35 @@ input {
     width: 90%;
     margin-bottom: 16px;
 }
-.city-btn {
-    padding: 4px;
+.btn-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: cornflowerblue;
-    border: none;
-    outline: none;
-    width: 100%;
-    text-align: center;
     color: #ffffff;
-    text-transform: uppercase;
-    font-weight: 500;
     margin-top: 8px;
     border-radius: 3px;
+    padding: 4px;
+}
+.city-btn {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.delete {
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.delete:hover, .delete:focus {
+    border: none;
+    outline: none;
+    font-weight: 700;
 }
 .city-btn:hover, .city-btn:focus, .city-btn:active {
     box-shadow: darkgray;

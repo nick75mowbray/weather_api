@@ -39,12 +39,12 @@ function runAPI(city){
             // add elements to page
             $('#city-name').text(city);
             $('#today-icon').empty();
-            $('#today-icon').append("<img src='http://openweathermap.org/img/wn/"+icon+"@2x.png'>");
+            $('#today-icon').append("<img src='https://openweathermap.org/img/wn/"+icon+"@2x.png'>");
             $('#today-temp').text(Math.floor(parseInt(response.main.temp)));
             $('#today-weather').text(response.weather[0].description);
             $('#humidity').text(response.main.humidity+"%");
             $('#windspeed').text(Math.floor(parseInt(response.wind.speed))+" m/s");
-            var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+long+"&appid="+APIkey;
+            var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+long+"&appid="+APIkey;
       $.ajax({
         url: uvURL,
         method: "GET",
@@ -71,7 +71,7 @@ function runAPI(city){
         }
       });
     //   get 5 day forcast
-    var forcastURL = "http://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+APIkey+"&units=metric";
+    var forcastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+APIkey+"&units=metric";
     $.ajax({
         url: forcastURL,
         method: "GET",
@@ -83,7 +83,7 @@ function runAPI(city){
             // var tempContainer = "<div class='temp-container></div";
             var temp = $("<h2 class='forcast-temp'></h2>").text(Math.floor(parseInt(response.list[i].main.temp))).append("&#176;");
             var forcastIcon = response.list[i].weather[0].icon;
-            var forcastIMG = $("<img src='http://openweathermap.org/img/wn/"+forcastIcon+".png'>");
+            var forcastIMG = $("<img src='https://openweathermap.org/img/wn/"+forcastIcon+".png'>");
             card.append(day, temp, forcastIMG);
             $('#forcast-container').append(card);
             }

@@ -154,6 +154,7 @@ input {
     overflow-x: auto;
     display: flex;
     flex-wrap: nowrap;
+    justify-content: center;
     margin-left: 8px;
 }
 .card {
@@ -178,5 +179,8 @@ input {
 @media only screen and (max-width:800px){
     body {
         background-image: url("./images/mobile.png");
+    }
+    #forcast-container {
+        justify-content: flex-start;
     }
 }

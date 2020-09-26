@@ -73,11 +73,21 @@ input {
 /* today city and temp */
 .flex-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin: 45px 0 300px 20px;
+}
+#left-container {
+    display: flex;
+}
+#today-condition-container {
+    text-align: center;
+    margin-right: 15px;
 }
 #arrow {
     margin-right: 20px;
+}
+#arrow:hover, #arrow:focus {
+    font-weight: 800;
 }
 #current-temp-container {
     display: flex;
@@ -89,6 +99,12 @@ input {
 #today-container {
     text-align: center;
 }
+#city-name:hover, #city-name:focus{
+    font-weight: 600;
+}
+#today-icon {
+    float:right;
+}
 
 /* today other info */
 #info-container {
@@ -99,8 +115,7 @@ input {
 .info {
     text-align: center;
 }
-#uv {
-    background-color: red;
+#uv-container {
     border-radius: 5px;
     padding: 2px 10px;
 }
@@ -126,4 +141,7 @@ input {
     margin: 10px 0;
     font-weight: 500;
     font-size: 2rem;
+}
+.day {
+    text-transform: uppercase;
 }

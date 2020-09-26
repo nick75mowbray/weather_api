@@ -23,7 +23,7 @@ function runAPI(city){
                 } else {
                     $( 'body' ).css('background-image', 'url("./images/lg-rain.png")');
                 }
-            } else if (weatherType = 800){
+            } else if (weatherType === 800){
                 if ($(window).width()<800){
                     $( 'body' ).css('background-image', 'url("./images/sm-sunny.png")');
                 } else {

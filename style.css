@@ -96,7 +96,7 @@ input {
 /* today city and temp */
 .flex-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 45px 0 300px 20px;
 }
 #left-container {

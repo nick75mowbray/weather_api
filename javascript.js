@@ -17,11 +17,12 @@ function runAPI(city){
             long = response.coord.lon;
             // add elements to page
             $('#city-name').text(city);
+            $('#today-icon').empty();
             $('#today-icon').append("<img src='http://openweathermap.org/img/wn/"+icon+"@2x.png'>");
             $('#today-temp').text(Math.floor(parseInt(response.main.temp)));
             $('#today-weather').text(response.weather[0].description);
             $('#humidity').text(response.main.humidity+"%");
-            $('#windspeed').text(response.wind.speed+" m/s");
+            $('#windspeed').text(Math.floor(parseInt(response.wind.speed))+" m/s");
             var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+long+"&appid="+APIkey;
       $.ajax({
         url: uvURL,
@@ -54,6 +55,7 @@ function runAPI(city){
         url: forcastURL,
         method: "GET",
         success: function(response){
+            $('#forcast-container').empty();
         for (var i = 0; i < 5; i++){
             var card = $("<div class='card'></div>");
             var day = $("<h4 class='day'></h4>").text(moment().add((i+1), 'days').format('ddd'));
@@ -83,11 +85,15 @@ function runAPI(city){
 
 // LOCAL STORAGE
 var cities = [];
+var currentCity;
 
 var citystorage = localStorage.getItem("citystorage");
+var currentCitykey = localStorage.getItem("currentCitykey");
 init();
+initCity()
 
 function renderButtons(){
+    $('#btn-container').empty();
     for (var i=0; i < cities.length; i++){
         var buttonDiv = $("<div class='btn-container'></div>");
         var deletebtn = $("<button class='delete'></button>").text("X");
@@ -105,13 +111,28 @@ function init() {
     } else {
         cities = JSON.parse(localStorage.getItem("citystorage"));
     }
-    // Render event text
+    // Render buttons
     renderButtons();
 };
 
+function initCity() {
+    // check if local storage has been used else get data from local storage
+    if(currentCitykey===null){
+        console.log("nothing in storage");
+        currentCity = "Adelaide";
+    } else {
+        currentCity = JSON.parse(localStorage.getItem("currentCitykey"));
+    }
+    runAPI(currentCity);
+
+};
 function storeCities() {
     // store timeblock objects in local storage
     localStorage.setItem("citystorage", JSON.stringify(cities));
+};
+function storeCurrrentCity() {
+    // store timeblock objects in local storage
+    localStorage.setItem("currentCitykey", JSON.stringify(currentCity));
 };
 
 // search button
@@ -119,9 +140,12 @@ $('#search-form').on("submit", function(event){
     event.preventDefault();
     cities.push($('#city-search').val());
     storeCities();
+    currentCity = $('#city-search').val();
+    storeCurrrentCity();
     renderButtons();
     toggleSearch();
     runAPI($('#city-search').val());
+    
 });
 
 // buttons
@@ -130,6 +154,23 @@ $('.city-btn').on("click", function(){
     console.log(thisCity);
     toggleSearch();
     runAPI(thisCity);
+    currentCity = thisCity;
+    storeCurrrentCity();
+});
+
+// delete button
+$('.delete').on("click", function(){
+    var thisCity = $( this ).parent();
+    var index;
+    for (var i = 0; i < cities.length; i++){
+        if ((thisCity.children('.city-btn').text())==cities[i]){
+            index = i;
+        }
+    }
+    // remove city from array at positon index
+    cities.splice(index, 1);
+    storeCities();
+    renderButtons();
 });
 
 

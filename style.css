@@ -80,7 +80,7 @@ input {
 .delete:hover, .delete:focus {
     border: none;
     outline: none;
-    font-weight: 700;
+    font-weight: 600;
 }
 .city-btn:hover, .city-btn:focus, .city-btn:active {
     box-shadow: darkgray;

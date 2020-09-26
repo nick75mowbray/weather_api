@@ -1,8 +1,8 @@
 $(document).ready(function(){
     console.log("js file working");
+function runAPI(city){
     var APIkey = "96a70732cd84bd1cb493d4a47475c856";
-    var cityName = "Adelaide";
-    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+APIkey+"&units=metric";
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+APIkey+"&units=metric";
     var icon;
     var lat;
     var long;
@@ -16,9 +16,10 @@ $(document).ready(function(){
             lat = response.coord.lat;
             long = response.coord.lon;
             // add elements to page
+            $('#city-name').text(city);
             $('#today-icon').append("<img src='http://openweathermap.org/img/wn/"+icon+"@2x.png'>");
             $('#today-temp').text(Math.floor(parseInt(response.main.temp)));
-            $('#today-weather').text(response.weather[0].main);
+            $('#today-weather').text(response.weather[0].description);
             $('#humidity').text(response.main.humidity+"%");
             $('#windspeed').text(response.wind.speed+" m/s");
             var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+long+"&appid="+APIkey;
@@ -47,21 +48,12 @@ $(document).ready(function(){
             console.log("oops something went wrong");
         }
       });
-      
-      function toggleSearch(){
-          $('#search-content').toggleClass("closed");
-          console.log("toggle search");
-      }
-      $('#arrow').on("click", toggleSearch);
-      $('#city-name').on("click", toggleSearch);
-      $('#close-div').on("click", toggleSearch);
-      
-//   5 day forcast
-var forcastURL = "http://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&appid="+APIkey+"&units=metric";
-$.ajax({
-    url: forcastURL,
-    method: "GET",
-    success: function(response){
+    //   get 5 day forcast
+    var forcastURL = "http://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+APIkey+"&units=metric";
+    $.ajax({
+        url: forcastURL,
+        method: "GET",
+        success: function(response){
         for (var i = 0; i < 5; i++){
             var card = $("<div class='card'></div>");
             var day = $("<h4 class='day'></h4>").text(moment().add((i+1), 'days').format('ddd'));
@@ -71,17 +63,63 @@ $.ajax({
             var forcastIMG = $("<img src='http://openweathermap.org/img/wn/"+forcastIcon+".png'>");
             card.append(day, temp, forcastIMG);
             $('#forcast-container').append(card);
-    }
-},
-    error: function(){
-        console.log("oops something went wrong");
-    }
-})
+            }
+        },
+        error: function(){
+            console.log("oops something went wrong");
+        }
+        });
+    };//end runAPI function
 
-// display correct days for forcast
-$('#day-1').text((moment().add(1, 'days').format('ddd')));
-$('#day-2').text((moment().add(2, 'days').format('ddd')));
-$('#day-3').text((moment().add(3, 'days').format('ddd')));
-$('#day-4').text((moment().add(4, 'days').format('ddd')));
-$('#day-5').text((moment().add(5, 'days').format('ddd')));
+    // show / hide search container
+      function toggleSearch(){
+          $('#search-content').toggleClass("closed");
+          console.log("toggle search");
+      }
+      $('#arrow').on("click", toggleSearch);
+      $('#city-name').on("click", toggleSearch);
+      $('#close-div').on("click", toggleSearch);
+
+
+// LOCAL STORAGE
+var cities = [];
+
+var citystorage = localStorage.getItem("citystorage");
+init();
+
+function renderButtons(){
+    for (var i=0; i < cities.length; i++){
+        var cityBTN = $("<button class='city-btn'></button>").text(cities[i]);
+        $('#btn-container').append(cityBTN);
+        console.log("buttons rendering");
+    }
+};
+
+function init() {
+    // check if local storage has been used else get data from local storage
+    if(citystorage===null){
+        console.log("nothing in storage");
+    } else {
+        cities = JSON.parse(localStorage.getItem("citystorage"));
+    }
+    // Render event text
+    renderButtons();
+};
+
+function storeCities() {
+    // store timeblock objects in local storage
+    localStorage.setItem("citystorage", JSON.stringify(cities));
+};
+
+// search button
+$('#search-form').on("submit", function(event){
+    event.preventDefault();
+    cities.push($('#city-search').val());
+    storeCities();
+    renderButtons();
+    toggleSearch();
+    runAPI($('#city-search').val());
+});
+
+
 });//end document ready

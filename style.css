@@ -99,13 +99,20 @@ input {
 #today-container {
     text-align: center;
 }
+#city-name {
+    text-transform: uppercase;
+}
 #city-name:hover, #city-name:focus{
     font-weight: 600;
 }
 #today-icon {
     float:right;
 }
-
+#today-weather {
+    position: relative;
+    top: -20px;
+    font-size: 1rem;
+}
 /* today other info */
 #info-container {
     display: flex;

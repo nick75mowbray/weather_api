@@ -38,7 +38,7 @@ $(document).ready(function(){
           console.log("toggle search");
       }
       $('#arrow').on("click", toggleSearch);
-      $('#close').on("click", toggleSearch);
+      $('#close-div').on("click", toggleSearch);
       
 // get stuff:
 // humidity response.main.humidity

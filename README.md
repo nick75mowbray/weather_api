@@ -1,5 +1,6 @@
 # Weather Dashboard
 ![screenshot of mobile verson](./screenshots/mobile.jpg)
+[click here to go to site](https://nick75mowbray.github.io/weather_api/)
 ## features
 -custom illustrations\
 -users can search for a city and return the current weather conditions and the forcast for the next 5 days\

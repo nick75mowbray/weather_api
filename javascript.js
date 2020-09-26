@@ -15,6 +15,27 @@ function runAPI(city){
             console.log(icon);
             lat = response.coord.lat;
             long = response.coord.lon;
+            // select background based on weather condition
+            var weatherType = response.weather[0].id;
+            if (weatherType < 700){
+                if ($(window).width()<800){
+                    $( 'body' ).css('background-image', 'url("./images/sm-rain.png")');
+                } else {
+                    $( 'body' ).css('background-image', 'url("./images/lg-rain.png")');
+                }
+            } else if (weatherType = 800){
+                if ($(window).width()<800){
+                    $( 'body' ).css('background-image', 'url("./images/sm-sunny.png")');
+                } else {
+                    $( 'body' ).css('background-image', 'url("./images/lg-sunny.png")');
+                }
+            } else {
+                if ($(window).width()<800){
+                    $( 'body' ).css('background-image', 'url("./images/mobile.png")');
+                } else {
+                    $( 'body' ).css('background-image', 'url("./images/desktop.png")');
+                }
+            };
             // add elements to page
             $('#city-name').text(city);
             $('#today-icon').empty();

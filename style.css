@@ -8,6 +8,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: cornflowerblue;
     color: white;
+    background-image: url("/images/desktop.png");
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Rubik', sans-serif;
@@ -168,4 +169,9 @@ input {
 }
 .day {
     text-transform: uppercase;
+}
+@media only screen and (max-width:800px){
+    body {
+        background-image: url("/images/mobile.png");
+    }
 }
